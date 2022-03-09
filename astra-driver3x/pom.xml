@@ -6,12 +6,47 @@
   <artifactId>astra-driver3x</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>astra-driver3x</name>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <!-- DRIVER VERSION -->
+    <cassandra.driver.oss.version>3.11.1</cassandra.driver.oss.version>
+    <!-- DRIVER VERSION -->
   </properties>
+  
+  
   <dependencies>
+  		
+  		<!-- (REQUIRED) OSS CASSANDRA DRIVER -->
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-core</artifactId>
+			<version>${cassandra.driver.oss.version}</version>
+		</dependency>
+		
+		<!-- (OPTIONAL) DEPENDENCY FOR OBJECT MAPPING -->
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-mapping</artifactId>
+			<version>${cassandra.driver.oss.version}</version>
+		</dependency>
+		
+		<!-- (OPTIONAL) DEPENDENCY FOR EXTRAS MAPPING (CODECS) -->
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-extras</artifactId>
+			<version>${cassandra.driver.oss.version}</version>
+		</dependency>
+		
+		 <!-- LOGS -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		
   </dependencies>
 </project>
 
