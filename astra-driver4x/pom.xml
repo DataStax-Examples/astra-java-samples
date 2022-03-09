@@ -6,12 +6,44 @@
   <artifactId>astra-driver4x</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <name>astra-driver4x</name>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+     <!-- DRIVER VERSION -->
+	<cassandra.driver.oss.version>4.13.0</cassandra.driver.oss.version>
+	<!-- DRIVER VERSION -->
   </properties>
+  
   <dependencies>
+  		<!-- (REQUIRED) Cassandra Driver -->
+		<dependency>
+			<groupId>com.datastax.oss</groupId>
+			<artifactId>java-driver-core</artifactId>
+			<version>${cassandra.driver.oss.version}</version>
+		</dependency>
+		
+		<!-- OPTIONAL DEPENDENCIES -->
+		<dependency>
+			<groupId>com.datastax.oss</groupId>
+			<artifactId>java-driver-query-builder</artifactId>
+			<version>${cassandra.driver.oss.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.datastax.oss</groupId>
+			<artifactId>java-driver-mapper-runtime</artifactId>
+			<version>${cassandra.driver.oss.version}</version>
+		</dependency>
+		
+		<!-- LOGS -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		
+  
   </dependencies>
 </project>
 

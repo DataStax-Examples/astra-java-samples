@@ -1,12 +1,11 @@
 package com.datastax.astra;
 
-import java.io.File;
+import java.nio.file.Paths;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.Session;
+import com.datastax.oss.driver.api.core.CqlSession;
 
 
 /**
@@ -14,7 +13,7 @@ import com.datastax.driver.core.Session;
  * 
  * https://astra.datastax.com
  */
-public class AstraDriver3x {
+public class AstraDriver4x {
     
     static final String ASTRA_ZIP_FILE = "<path_to_secureConnectBundle.zip>";
     static final String ASTRA_USERNAME = "<provide_a_clientId>";
@@ -22,13 +21,14 @@ public class AstraDriver3x {
     static final String ASTRA_KEYSPACE = "<provide_your_keyspace>";
     
     public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(AstraDriver3x.class);
-        try(Cluster cluster = Cluster.builder()
-                .withCloudSecureConnectBundle(new File(ASTRA_ZIP_FILE))
-                .withCredentials(ASTRA_USERNAME, ASTRA_PASSWORD)
-                .build() ) {
-             Session session = cluster.connect(ASTRA_KEYSPACE);
-             logger.info("[OK] Welcome to ASTRA. Connected to Keyspace {}", session.getLoggedKeyspace());
+        Logger logger = LoggerFactory.getLogger(AstraDriver4x.class);
+        // Connect
+        try (CqlSession cqlSession = CqlSession.builder()
+                .withCloudSecureConnectBundle(Paths.get(ASTRA_ZIP_FILE))
+                .withAuthCredentials(ASTRA_USERNAME, ASTRA_PASSWORD)
+                .withKeyspace(ASTRA_KEYSPACE)
+                .build()) {
+            logger.info("[OK] Welcome to ASTRA. Connected to Keyspace {}", cqlSession.getKeyspace().get());
         }
         logger.info("[OK] Success");
         System.exit(0);
